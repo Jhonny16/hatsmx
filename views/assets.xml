@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_hatsxmx" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+<!--            &lt;!&ndash;Adds&ndash;&gt;-->
+<!--            <link rel="stylesheet" href="/l10n_cr_hatsmx/static/src/css/bootstrap.css"/>-->
+<!--            <link rel="stylesheet" href="/l10n_cr_hatsmx/static/src/css/custom.css"/>-->
+<!--             <link rel="stylesheet" href="/l10n_cr_hatsmx/static/src/css/bootstrap_new.css" />-->
+            <link rel="stylesheet" href="/l10n_cr_hatsmx/static/src/css/pos.css"/>
+
+            <!--Odoo-->
+            <script type="text/javascript" src="/l10n_cr_hatsmx/static/src/min/swal.min.js"/>
+
+            <script type="text/javascript" src="/l10n_cr_hatsmx/static/src/js/Models.js"/>
+            <script type="text/javascript" src="/l10n_cr_hatsmx/static/src/js/CashControlPopupWidget.js"/>
+            <script type="text/javascript" src="/l10n_cr_hatsmx/static/src/js/FinancialEntityPopupWidget.js"/>
+            <script type="text/javascript" src="/l10n_cr_hatsmx/static/src/js/PaymentScreen.js"/>
+
+
+        </xpath>
+
+          <xpath expr="//link[@id='pos-stylesheet']" position="after">
+                <link rel="stylesheet" href="/l10n_cr_hatsmx/static/src/css/table_col.css" />
+<!--                <link rel="stylesheet" href="/l10n_cr_hatsmx/static/src/css/bootstrap_new.css" />-->
+            </xpath>
+    </template>
+</odoo>

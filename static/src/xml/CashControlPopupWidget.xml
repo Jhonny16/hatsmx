@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template_hatsmx" xml:space="preserve">
+    <t t-name="PaymentsPopupWidget" t-inherit="pos_cash_control.PaymentsPopupWidget" t-inherit-mode="extension" owl="1">
+            <xpath expr="//div[hasclass('popup')]" t-operation="replace">
+                <div class="popup popup-textinput" style="width: 905px; max-width: 905px; height: 540px;">
+                    <header style="background: #0d2c70; color: white; padding: 10px; position: relative; font-size:17px" class="title">
+                        Lista de pagos
+                    </header>
+                    <main class="body" style="background: white; font-size:15px">
+                             <div class="row" style="    margin-right: -10px;">
+                                <div class="col-md-4">
+                                    <table class="table" style="background: #edfcfb">
+                                        <thead>
+                                            <tr style="color: white">
+                                                <th colspan="2" class="color-odoo">Resumen por método de pago: </th>
+
+                                            </tr>
+                                            <tr style="color: #2abaad">
+                                                <th>Método de pago</th>
+                                                <th style="text-align: center;">Monto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:14px">
+                                             <t t-if="props.payments and props.payments.totales">
+                                                <t t-foreach="props.payments.totales" t-as="paid">
+                                                    <tr>
+                                                        <td style="text-align: left;"> <t t-esc="paid.name"/></td>
+                                                        <td style="text-align: right;"> <t t-esc="env.pos.format_currency(paid.total)"/></td>
+                                                    </tr>
+                                                </t>
+                                             </t>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                 <div class="col-md-8">
+                                    <div class="row" style="height: 300px;overflow: scroll;">
+                                         <table class="table table-hover">
+                                            <thead style="position: sticky;top: 0;">
+                                                <tr style="color: white">
+                                                    <th style="text-align: center;" class="color-odoo">Pedido</th>
+                                                    <th class="color-odoo">Método de pago</th>
+                                                    <th class="color-odoo">Fecha</th>
+                                                    <th class="color-odoo" style="text-align: right;">Monto</th>
+                                                </tr>
+                                            </thead>
+                                                 <tbody>
+                                                 <t t-if="props.payments and props.payments.values">
+                                                    <t t-foreach="props.payments.values" t-as="payment">
+                                                        <tr>
+                                                            <td> <t t-esc="payment.pos_order_name"/></td>
+                                                            <td style="text-align: left;"> <t t-esc="payment.payment_name"/></td>
+                                                            <td style="text-align: center;"> <t t-esc="payment.payment_date"/></td>
+                                                            <td style="text-align: right;"> <t t-esc="env.pos.format_currency(payment.amount)"/></td>
+                                                        </tr>
+                                                    </t>
+                                                 </t>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                     <div class="row">
+                                         <table style="width: 100%">
+                                             <body style="color: #3bb6a5; background: white">
+                                                 <tr>
+                                                     <td colspan="2" style="width: 64%"></td>
+                                                     <td align="left" style="width: 19%;">Efectivo inicial</td>
+                                                     <td align="right"><t t-esc="env.pos.format_currency(props.payments.cash_register_balance_start)"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                    <td colspan="2" style="width: 64%"></td>
+                                                     <td align="left" style="width: 19%;">Transacciones</td>
+                                                     <td align="right"><t t-esc="env.pos.format_currency(props.payments.cash_register_total_entry_encoding)"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                    <td colspan="2" style="width: 64%"></td>
+                                                     <td align="left" style="width: 19%;">Efectivo esperado</td>
+                                                     <td align="right"><t t-esc="env.pos.format_currency(props.payments.cash_register_balance_end)"/></td>
+                                                 </tr>
+
+                                                 <tr>
+                                                    <td colspan="2" style="width: 64%"></td>
+                                                     <td align="left" style="width: 19%;">Efectivo real</td>
+                                                     <td align="right"><t t-esc="env.pos.format_currency(props.payments.cash_register_balance_end_real)"/></td>
+                                                 </tr>
+                                             </body>
+                                     </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                         </main>
+                        <div class="footer">
+                                <div class="button confirm" t-on-click="cancel">
+                                    Ok
+                                </div>
+                            <div class="button back" t-on-click="click_back">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                Back
+                                </div>
+                            </div>
+                        </div>
+            </xpath>
+        <!--    <t t-name="PaymentsPopupWidget" owl="1">-->
+    </t>
+
+</templates>

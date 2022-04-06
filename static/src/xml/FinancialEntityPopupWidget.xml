@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<templates id="template_financial_entity" xml:space="preserve">
+
+
+<!--    <t t-name="AlertPopup" owl="1">-->
+    <!--        <div class="modal-dialog">-->
+    <!--            <div class="popup popup-textinput" style="height:220px !important">-->
+    <!--                <p class="title" style="background: #0d2c70; color: white; padding: 10px;">-->
+    <!--                    <t t-esc="props.title || 'Message' " />-->
+    <!--                </p>-->
+    <!--                <p class="body" style="height: 80px;">-->
+    <!--                    <t t-esc="props.body || '' " />-->
+    <!--                </p>-->
+    <!--                <div class="footer">-->
+    <!--                    <div class="button cancel" t-on-click="cancel">-->
+    <!--                        OK-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </t>-->
+
+    <t t-name="FinancialEntityPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-confirm" style="height: 460px; background: white;">
+                <header class="title" style="background: #0d2c70; color: white; padding: 10px;">
+                    <t t-esc="props.title"/>
+                </header>
+                <main class="body" style="height: 340px; overflow-y: scroll; margin: 5px;">
+                    <t t-set="type" t-value="props.type"/>
+                    <input type="hidden" name="payment_line_cid" t-att-value="props.paymentline_cid"/>
+                    <t t-if="type == 'card' " >
+                         <select class="card_type" name='card_type' id="card_type"  data-is-required="true"
+                            style="height: 40px; margin-top: 30px;margin-left: 10px;margin-bottom: 10px;max-width: 300px;width: 300px;">
+                            <option value="Credito">Crédito</option>
+                            <option value="Debito">Débito</option>
+                        </select>
+                    </t>
+                    <input id="bank_name" type="text" class='input' placeholder='Ingrese banco'  data-is-required="true"
+                           name="bank_name" style="margin-top: 20px;max-width: 300px;margin-left: 10px;"/>
+
+                    <input id="bank_code" type="text" class='input' placeholder='Ingrese nombre'  data-is-required="true"
+                           name="bank_code" style="margin-top: 20px;max-width: 300px;margin-left: 10px;"/>
+
+                    <input id="transaction_id" type="text" class='input' placeholder='Ingrese código de autorización'
+                           name="transaction_id" style="margin-top: 20px;max-width: 300px;margin-left: 10px;"  data-is-required="true"/>
+                    <t t-if="type == 'bank' " >
+                         <input id="bank_auth_deposit" type="text" class='input' placeholder='Ingrese quién autorizó depósito'
+                           name="bank_auth_deposit" style="margin-top: 20px;max-width: 300px;margin-left: 10px;"  data-is-required="true"/>
+
+                        <input id="cardholder_name" type="text" class='input' placeholder='Ingrese propietario'
+                                name="cardholder_name" style="margin-top: 20px;max-width: 300px;margin-left: 10px;"  data-is-required="true"/>
+                    </t>
+                </main>
+                <footer class="footer">
+                    <div class="button confirm" style="width:153px;" t-on-click="click_confirm">
+                        Confirmar
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancelar
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+
+</templates>
